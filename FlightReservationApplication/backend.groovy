@@ -40,10 +40,10 @@ pipeline {
         }
           stage('Update-Deployment'){
                 steps{
-                    sh'''
+                    sh"""
                     IMAGE_TAG=${BUILD_NUMBER}
                     sed -i 's|image: abhi2578/flightreservation-new:.*|image: abhi2578/flightreservation-new:${IMAGE_TAG}|g' FlightReservationApplication/k8s/deployment.yaml
-                        '''
+                        """
                 }
           } 
          stage('Deploy'){
