@@ -37,6 +37,7 @@ pipeline {
                 '''
                }
             }
+        }
           stage('Update-Deployment){
                 steps{
                     sed -i 's|image: abhi2578/flightreservation-new:.*|image: abhi2578/flightreservation-new:${BUILD_NUMBER}|g' k8s/deployment.yaml
@@ -50,8 +51,18 @@ pipeline {
                  kubectl apply -f k8s/
              }
          }
-         
-        }
+         }
+         post {
+    success {
+        echo 'Pipeline completed successfully!'
 
+        build job: 'flight-frontend'
+    }
+
+    failure {
+        echo 'Pipeline failed!'
     }
 }
+        }
+
+    
