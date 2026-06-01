@@ -10,8 +10,8 @@ pipeline{
             steps{
                 sh '''
                     cd frontend
-                    sudo apt update -y
-                    sudo apt install nodejs npm -y
+                    apt update -y
+                    apt install nodejs npm -y
                     npm install
                     npm run build
                 '''
