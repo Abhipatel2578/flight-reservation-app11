@@ -37,6 +37,20 @@ pipeline {
                 '''
                }
             }
+          stage('Update-Deployment){
+                steps{
+                    sed -i 's|image: abhi2578/flightreservation-new:.*|image: abhi2578/flightreservation-new:${BUILD_NUMBER}|g' k8s/deployment.yaml
+
+                }
+          } 
+         stage('Deploy'){
+             steps{
+                 sh'''
+                 cd FlightReservationApplication
+                 kubectl apply -f k8s/
+             }
+         }
+         
         }
 
     }
