@@ -18,11 +18,11 @@ pipeline {
             steps {
                 sh '''
                  cd FlightReservationApplication
-                mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-                -Dsonar.projectKey=Flight \
-                -Dsonar.projectName='Flight' \
-                -Dsonar.host.url=http://51.44.178.20:9000 \
-                -Dsonar.token=sqp_14872e41e80b058a3017eb22bf67444aa6375f7d'''
+               mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+              -Dsonar.projectKey=Flight \
+              -Dsonar.projectName='Flight' \
+              -Dsonar.host.url=http://13.38.30.9:9000 \
+              -Dsonar.token=sqp_12a77664c430c104e957550b6a1ac4bcc1ab0d1f'''
             }
         }
                 stage('Docker-build'){
@@ -31,9 +31,9 @@ pipeline {
                 {
                 sh '''
                     cd FlightReservationApplication
-                    docker build -t abhi2578/flightreservation-new:latest .
-                    docker push abhi2578/flightreservation-new:latest
-                    docker rmi abhi2578/flightreservation-new:latest
+                    docker build -t abhi2578/flightreservation-new:${BUILD_NUMBER} .
+                    docker push abhi2578/flightreservation-new:${BUILD_NUMBER}
+                    docker rmi abhi2578/flightreservation-new:${BUILD_NUMBER}
                 '''
                }
             }
