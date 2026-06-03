@@ -18,11 +18,10 @@ pipeline {
             steps {
                 sh '''
                  cd FlightReservationApplication
-               mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-              -Dsonar.projectKey=Flight \
-              -Dsonar.projectName='Flight' \
-              -Dsonar.host.url=http://13.38.30.9:9000 \
-              -Dsonar.token=sqp_12a77664c430c104e957550b6a1ac4bcc1ab0d1f'''
+                 mvn clean verify sonar:sonar \
+                 -Dsonar.projectKey=Flight \
+                 -Dsonar.host.url=http://15.237.197.202:9000 \
+                 -Dsonar.login=sqp_9d44103f78fc1e6202fb5e3ede1efbedfb5ba8ca'''
             }
         }
                 stage('Docker-build'){
